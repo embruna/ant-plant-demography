@@ -76,5 +76,46 @@ IPMpack.EB <- function(x, y) {
   lambda
   
   
-  
 }
+
+
+############################################################################################# 
+###############     CHANGING THE FUNCIONAL FORM OF GROWTH AND SURV OBJECTS    ############### 
+#############################################################################################
+
+# This section is only used if you need to change the functional form of 
+# the growth / surv objects if necessary. For details see Metcalf et al. MME paper
+
+# setClass("growthObjSaturate", representation(paras = "numeric", sd = "numeric"))
+
+# fSaturate <- function(size, pars) {
+#   u <- exp(pmin(pars[1] + pars[2] * size, 50))
+#   u <- pars[3] * 1/(1+u)
+#   return(u)}
+
+
+# wrapSaturate <- function(par, dataf) {
+#   pred <- fSaturate(dataf$size, par[1:3])
+#   ss <- sum((pred - dataf$sizeNext)^2, na.rm = TRUE)
+#   return(ss)}
+
+# tmp <- optim(c(1, 1, 1), wrapSaturate, dataf = dff, method = "Nelder-Mead")
+# tmp
+
+
+# resids <- fSaturate(dff$size, tmp$par) - dff$sizeNext
+# sdSaturate <- sd(resids, na.rm = TRUE)
+
+# gr1 <- new("growthObjSaturate")
+# gr1@paras <- tmp$par
+# gr1@sd <- sdSaturate
+
+# setMethod("growth", c("numeric", "numeric", "numeric", "growthObjSaturate"),
+#           function(size, sizeNext, cov, growthObj){
+#             mux <- fSaturate(size, growthObj@paras)
+#             sigmax <- growthObj@sd
+#             u <- dnorm(sizeNext, mux, sigmax, log = F)
+#             return(u);})
+
+# gr1
+
