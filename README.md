@@ -7,3 +7,4 @@ Still to be added are the scripts for
 2) barcharts of the elasticities (parameters and individual stages)
 3) LTRE analyses and plots
 4) Randomization tests
+5) corrections / functions for codes to calclulate sens and elast in Master code
